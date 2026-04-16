@@ -1,0 +1,57 @@
+.sidebar{
+    background-color: #0D1321;
+    width: 16rem;
+    border: 0.1rem solid #1D2435;
+}
+
+.title{
+    font-size: 0.9rem;
+}
+
+.version{
+    color: #758884;
+    font-size: 0.8rem;
+}
+
+.bolt-bg{
+    background-color: #3C83F6;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 25%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.buttons{
+    color: #758884;
+    display:flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;   
+    font-size: 1rem;
+}
+
+hr{
+    background-color: #1D2435;
+    height: 0.1rem;
+}
+
+img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.material-icons{
+    font-size: 1rem;
+    color: #758884;
+}
+
+a:link{
+    text-decoration: none;
+}
