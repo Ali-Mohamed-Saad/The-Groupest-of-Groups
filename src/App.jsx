@@ -4,6 +4,8 @@ import Board from "./components/Board";
 import AI from "./components/AI";
 import Team from "./components/Team";
 import Settings from "./components/Settings";
+import Login from "./components/Login";
+import MainLayout from "./shared/MainLayout";
 
 import './App.css'
 
@@ -17,18 +19,16 @@ function App() {
         <>
                 <StrictMode>
                         <BrowserRouter>
-                                <div className="d-flex overflow-hidden vh-100">
-                                        <Sidebar/>
-                                        <div className="routes d-flex flex-grow-1 flex-column overflow-hidden h-100">
-                                                <Routes>
-                                                        <Route path="/" element={<Dashboard></Dashboard>}></Route>
-                                                        <Route path="/Board" element={<Board></Board>}></Route>
-                                                        <Route path="/ai" element={<AI></AI>}></Route>
-                                                        <Route path="/team" element={<Team></Team>}></Route>
-                                                        <Route path="/settings" element={<Settings></Settings>}></Route>
-                                                </Routes>
-                                        </div>
-                                </div>
+                                <Routes>
+                                        <Route path="/auth" element={<Login></Login>}></Route>
+                                        <Route element={<MainLayout></MainLayout>}>
+                                                <Route path="/" element={<Dashboard></Dashboard>}></Route>
+                                                <Route path="/Board" element={<Board></Board>}></Route>
+                                                <Route path="/ai" element={<AI></AI>}></Route>
+                                                <Route path="/team" element={<Team></Team>}></Route>
+                                                <Route path="/settings" element={<Settings></Settings>}></Route>
+                                        </Route>
+                                </Routes>
                         </BrowserRouter>
                 </StrictMode>
         </>)

@@ -12,6 +12,7 @@
     border-right: 2px solid #1D2435;
     overflow-y: auto;
     min-height: 0;
+    
 }
 .toggle-panel{
     background-color: transparent;
@@ -47,6 +48,10 @@
     color: #758884 !important;
     border: none !important;
     outline: none;
+    resize: none;
+}
+.search-bar::-webkit-scrollbar{
+    width: 0px !important;
 }
 .search-bar:focus{
     box-shadow: none !important;
@@ -104,7 +109,7 @@ nav{
 }
 .chat-bg{
     background-color: #0A0F1A;
-    height: 8rem;
+    height: 10rem;
     border-top: 2px solid #1D2435;
 }
 .main{
@@ -136,4 +141,18 @@ nav{
     display: flex;        
     flex-direction: column;
     overflow: hidden;     
+}
+.chat-disclaimer{
+    color:#758884;
+    font-size: .7rem;
+}
+.attach-bg{
+    background-color:#1D2435;
+}
+.attach-bg:hover{
+    cursor:pointer;
+}
+.send-bg{
+    background-color: #2759aa;
+    border: none;
 }

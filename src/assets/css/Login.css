@@ -1,0 +1,15 @@
+.bolt-bg{
+    background-color: #3C83F6;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 25%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.bolt{
+    font-size:2rem;
+}
+.agent-subtext{
+    color: #758884 !important;
+}
