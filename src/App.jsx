@@ -5,6 +5,7 @@ import AI from "./components/AI";
 import Team from "./components/Team";
 import Settings from "./components/Settings";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import MainLayout from "./shared/MainLayout";
 
 import './App.css'
@@ -20,7 +21,8 @@ function App() {
                 <StrictMode>
                         <BrowserRouter>
                                 <Routes>
-                                        <Route path="/auth" element={<Login></Login>}></Route>
+                                        <Route path="/login" element={<Login></Login>}></Route>
+                                        <Route path="/signup" element={<SignUp></SignUp>}></Route>
                                         <Route element={<MainLayout></MainLayout>}>
                                                 <Route path="/" element={<Dashboard></Dashboard>}></Route>
                                                 <Route path="/Board" element={<Board></Board>}></Route>
