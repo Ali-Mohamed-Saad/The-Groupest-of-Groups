@@ -17,7 +17,7 @@ function AI() {
                         <input className="search-bar form-control mr-sm-2 p-0" type="search" placeholder="Search chats..." aria-label="Search"></input>
                         
                     </div>
-                    <p className="recent mx-3 mt-4">RECENT Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum laborum quia ipsam nisi reprehenderit sunt quas fugit, eligendi voluptatem adipisci sint, est libero animi, accusamus inventore recusandae cum laboriosam velit consequuntur in suscipit? Voluptatibus odio quasi facilis explicabo ullam nihil tempora blanditiis, cupiditate unde recusandae quibusdam maxime hic exercitationem. Nostrum odio excepturi voluptas nesciunt veritatis expedita, explicabo, optio omnis corporis accusamus at numquam vitae iste dolorum impedit sunt ipsum voluptatibus exercitationem quae sed. Minima blanditiis facere quibusdam temporibus praesentium ducimus cupiditate nisi. Dolor, vitae enim at modi eos itaque aperiam iure et qui nobis similique tempora doloremque iusto quos ex error sapiente ipsam fugiat corrupti adipisci. Quo laboriosam culpa sunt? Eius esse saepe, quidem exercitationem assumenda impedit? Odio iste at officia obcaecati, voluptas eaque enim aut reprehenderit. Nam vitae iste ullam in iure aliquam voluptate totam, aut doloremque quasi necessitatibus, ipsum ex! Sit, neque odio porro dignissimos a laborum asperiores consequatur quo sunt assumenda aliquam illum eveniet minima reiciendis doloremque in voluptate, nulla perferendis? Blanditiis quisquam molestias voluptatibus. Libero obcaecati voluptatum expedita voluptate? Sapiente ratione nisi odit, magnam laudantium iste amet ullam blanditiis culpa ut incidunt, tenetur dolorum illum error? Odit quas impedit assumenda nulla sequi ipsam? Accusamus, eligendi? Odio error explicabo beatae corrupti enim facilis, accusantium, impedit minus reiciendis assumenda fugiat quisquam?</p>
+                    <p className="recent mx-3 mt-4">RECENT</p>
                     <p className="no-chats text-center">No chats yet</p>
                 </div>
 
@@ -43,15 +43,18 @@ function AI() {
                             <div className='agent-icon-bg d-flex justify-content-center align-items-center mx-auto'>
                                 <span className="agent-icon material-symbols-outlined text-dark"> robot_2 </span>
                             </div>
-                            <h3 className='text-light my-3 fw-bold'>How can I help today?  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum laborum quia ipsam nisi reprehenderit sunt quas fugit, eligendi voluptatem adipisci sint, est libero animi, accusamus inventore recusandae cum laboriosam velit consequuntur in suscipit? Voluptatibus odio quasi facilis explicabo ullam nihil tempora blanditiis, cupiditate unde recusandae quibusdam maxime hic exercitationem. Nostrum odio excepturi voluptas nesciunt veritatis expedita, explicabo, optio omnis corporis accusamus at numquam vitae iste dolorum impedit sunt ipsum voluptatibus exercitationem quae sed. Minima blanditiis facere quibusdam temporibus praesentium ducimus cupiditate nisi. Dolor, vitae enim at modi eos itaque aperiam iure et qui nobis similique tempora doloremque iusto quos ex error sapiente ipsam fugiat corrupti adipisci. Quo laboriosam culpa sunt? Eius esse saepe, quidem exercitationem assumenda impedit? Odio iste at officia obcaecati, voluptas eaque enim aut reprehenderit. Nam vitae iste ullam in iure aliquam voluptate totam, aut doloremque quasi necessitatibus, ipsum ex! Sit, neque odio porro dignissimos a laborum asperiores consequatur quo sunt assumenda aliquam illum eveniet minima reiciendis doloremque in voluptate, nulla perferendis? Blanditiis quisquam molestias voluptatibus. Libero obcaecati voluptatum expedita voluptate? Sapiente ratione nisi odit, magnam laudantium iste amet ullam blanditiis culpa ut incidunt, tenetur dolorum illum error? Odit quas impedit assumenda nulla sequi ipsam? Accusamus, eligendi? Odio error explicabo beatae corrupti enim facilis, accusantium, impedit minus reiciendis assumenda fugiat quisquam?</h3>
+                            <h3 className='text-light my-3 fw-bold'>How can I help today?</h3>
                             <h6 className='agent-subtext fw-light mx-auto'>Ask anything — break down projects, generate user stories, plan sprints, or get unblocked.</h6>
                         </div>
 
-                        <div className='chat-bg d-flex justify-content-center align-items-center w-100'>
-                            <div className="chat d-flex justify-content-center align-items-center rounded">
-                                <span className="material-symbols-outlined p-2">search</span>       
-                                <input className="search-bar form-control mr-sm-2 p-0" type="search" placeholder="Search chats..." aria-label="Search"></input>
-                            </div>    
+                        <div className='chat-bg d-flex flex-column justify-content-center align-items-center gap-2 w-100'>
+                            <div className="chat d-flex justify-content-center align-items-center mt-2 rounded">
+                                <input type="file" id="upload" className="" hidden></input>
+                                <label htmlFor="upload" className='attach-bg d-flex justify-content-center align-items-center p-2 mx-3 rounded'><span className="material-symbols-outlined">attach_file</span></label>
+                                <textarea className="search-bar form-control mr-sm-2 px-0 my-2" placeholder="Message AI-Sprint..." rows="1"></textarea>
+                                <button className="send-bg d-flex justify-content-center align-items-center p-2 rounded m-3"><span className="send material-symbols-outlined text-dark"> send </span></button>
+                            </div>
+                            <p className="chat-disclaimer">AI can make mistakes. Verify important info.</p>
                         </div>
                     </main>
                 </div>
@@ -61,3 +64,8 @@ function AI() {
 }
 
 export default AI;
+
+
+
+
+
