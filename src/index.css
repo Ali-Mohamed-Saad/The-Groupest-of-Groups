@@ -1,0 +1,117 @@
+/* ============================================================
+   Theme CSS Variables — set by ThemeContext via data-theme on <body>
+   ============================================================ */
+
+/* Deep Navy Blue (dark) */
+[data-theme="dark-blue"] {
+  --color-body-bg:        #080C16;
+  --color-sidebar-bg:     #0D1321;
+  --color-sidebar-border: #1D2435;
+  --color-card-bg:        #0D1321;
+  --color-surface:        #0C111E;
+  --color-border:         #1D2435;
+  --color-primary:        #3C83F6;
+  --color-text:           #E2E8F0;
+  --color-text-muted:     #758884;
+  --color-heading:        #F8FAFC;
+  --color-hr:             #1D2435;
+}
+
+/* Emerald Mint (dark) */
+[data-theme="dark-emerald"] {
+  --color-body-bg:        #090F0D;
+  --color-sidebar-bg:     #0E1815;
+  --color-sidebar-border: #162420;
+  --color-card-bg:        #0E1815;
+  --color-surface:        #0E1815;
+  --color-border:         #162420;
+  --color-primary:        #10B77F;
+  --color-text:           #E2E8F0;
+  --color-text-muted:     #758884;
+  --color-heading:        #F8FAFC;
+  --color-hr:             #162420;
+}
+
+/* Midnight Violet (dark) */
+[data-theme="dark-purple"] {
+  --color-body-bg:        #0A0812;
+  --color-sidebar-bg:     #120E1E;
+  --color-sidebar-border: #1E1830;
+  --color-card-bg:        #120E1E;
+  --color-surface:        #120E1E;
+  --color-border:         #1E1830;
+  --color-primary:        #8B5CF6;
+  --color-text:           #E2E8F0;
+  --color-text-muted:     #758884;
+  --color-heading:        #F8FAFC;
+  --color-hr:             #1E1830;
+}
+
+/* Glass Slate (dark) */
+[data-theme="glass-slate"] {
+  --color-body-bg:        #0F172A;
+  --color-sidebar-bg:     #1E293B;
+  --color-sidebar-border: #334155;
+  --color-card-bg:        #1E293B;
+  --color-surface:        #1E293B;
+  --color-border:         #334155;
+  --color-primary:        #64748B;
+  --color-text:           #E2E8F0;
+  --color-text-muted:     #94A3B8;
+  --color-heading:        #F8FAFC;
+  --color-hr:             #334155;
+}
+
+/* Light Breeze (light) */
+[data-theme="light-blue"] {
+  --color-body-bg:        #F8FAFC;
+  --color-sidebar-bg:     #FFFFFF;
+  --color-sidebar-border: #E2E8F0;
+  --color-card-bg:        #FFFFFF;
+  --color-surface:        #F1F5F9;
+  --color-border:         #E2E8F0;
+  --color-primary:        #3C83F6;
+  --color-text:           #1E293B;
+  --color-text-muted:     #64748B;
+  --color-heading:        #0F172A;
+  --color-hr:             #E2E8F0;
+}
+
+/* Light Emerald (light) */
+[data-theme="light-emerald"] {
+  --color-body-bg:        #F4FBF7;
+  --color-sidebar-bg:     #FFFFFF;
+  --color-sidebar-border: #D1FAE5;
+  --color-card-bg:        #FFFFFF;
+  --color-surface:        #ECFDF5;
+  --color-border:         #D1FAE5;
+  --color-primary:        #10B77F;
+  --color-text:           #1E293B;
+  --color-text-muted:     #64748B;
+  --color-heading:        #0F172A;
+  --color-hr:             #D1FAE5;
+}
+
+/* Light Lavender (light) */
+[data-theme="light-purple"] {
+  --color-body-bg:        #FAF5FF;
+  --color-sidebar-bg:     #FFFFFF;
+  --color-sidebar-border: #EDE9FE;
+  --color-card-bg:        #FFFFFF;
+  --color-surface:        #F5F3FF;
+  --color-border:         #EDE9FE;
+  --color-primary:        #8B5CF6;
+  --color-text:           #1E293B;
+  --color-text-muted:     #64748B;
+  --color-heading:        #0F172A;
+  --color-hr:             #EDE9FE;
+}
+
+/* ============================================================
+   Global base styles driven by variables
+   ============================================================ */
+body {
+  background-color: var(--color-body-bg, #080C16) !important;
+  color: var(--color-text, #E2E8F0);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom"
 import placeholder from "../assets/placeholder.png"
-import Dashboard from "../components/Dashboard"
-import Board from "../components/Board"
-import AI from "../components/AI"
-import Settings from "../components/Settings"
-import Team from "../components/Team"
+import { useTheme } from "../context/ThemeContext"
 
 import './Sidebar.css'
 
 function Sidebar() {
+    const { activeTheme, toggleDarkLight } = useTheme();
+
     return(
         <>
             <div className="d-flex flex-column justify-content-between sidebar h-100">
@@ -60,15 +58,17 @@ function Sidebar() {
                 <div>
                     <hr />
                     <div className="ps-3">
-                        <div className="buttons">
-                        <span className="material-symbols-outlined">wb_sunny</span>
-                            <span>Light Mode</span>
+                        <div className="buttons theme-toggle-btn" onClick={toggleDarkLight} style={{ cursor: "pointer" }}>
+                            <span className="material-symbols-outlined">
+                                {activeTheme.isDark ? "wb_sunny" : "dark_mode"}
+                            </span>
+                            <span>{activeTheme.isDark ? "Light Mode" : "Dark Mode"}</span>
                         </div>
                     </div>
                     <div className="px-3 d-flex justify-content-between align-items-center my-3">
                         <div className="d-flex">
                             <img src={ placeholder} alt="" />
-                            <span className="text-light mx-2">example@gmail.com</span>
+                            <span className="sidebar-email mx-2">example@gmail.com</span>
                         </div>
                         <span className="material-symbols-outlined mb-2">exit_to_app</span>
                     </div>
