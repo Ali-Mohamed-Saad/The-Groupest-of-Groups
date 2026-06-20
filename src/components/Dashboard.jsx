@@ -62,7 +62,7 @@ function Dashboard() {
   );
 
   return (
-    <div className="dashboard">
+    <div className="dashboard flex-grow-1">
       <h1>Sprint 1</h1>
 
       <p>

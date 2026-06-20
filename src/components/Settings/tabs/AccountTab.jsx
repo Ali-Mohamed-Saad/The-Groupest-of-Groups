@@ -1,7 +1,7 @@
 // src/components/Settings/tabs/AccountTab.jsx
 
 import { useState } from "react";
-import SettingsToast from "../../shared/SettingsToast";
+import SettingsToast from "../../../shared/SettingsToast";
 
 export default function AccountTab() {
     const [account, setAccount] = useState({
