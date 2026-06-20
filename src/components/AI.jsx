@@ -1,6 +1,25 @@
+import { useState } from 'react';
 import '../assets/css/AI.css'
 
 function AI() {
+
+    const [ message, setMessage] = useState('');
+    const [ reply, setReply] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const res = await fetch('http://localhost:3000/ai', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json'},
+            body: JSON.stringify({ message, provider: 'ChatGPT', history: [] }),
+
+        });
+
+        const data = await res.json();
+        setReply(data.reply);
+    }
+
     return(
         <>
             <div className="ai d-flex flex-grow-1 overflow-hidden h-100">
@@ -9,12 +28,12 @@ function AI() {
                 <div className="chat-sidebar">
                     <div className="d-flex m-3">
                         <button className="new-chat text-center py-2 w-100">+ New Chat</button>
-                        <button className="toggle-panel ms-2"><span className="material-symbols-outlined toggle-panel-icon text-white py-2">left_panel_close</span></button>
+                        <button className="toggle-panel ms-2"><span className="material-symbols-outlined toggle-panel-icon py-2">left_panel_close</span></button>
                     </div>
                     <hr></hr>
                     <div className="search d-flex rounded mx-3">
                         <span className="material-symbols-outlined p-2">search</span>       
-                        <input className="search-bar form-control mr-sm-2 p-0" type="search" placeholder="Search chats..." aria-label="Search"></input>
+                        <input className="search-bar form-control mr-sm-2 p-0" type="text" placeholder="Search chats..." aria-label="Search"></input>
                         
                     </div>
                     <p className="recent mx-3 mt-4">RECENT</p>
@@ -25,7 +44,7 @@ function AI() {
                 <div className="right-section d-flex flex-column flex-grow-1 w-100 overflow-hidden">
                     <nav className="">
                         <div className="dropdown p-2">
-                            <button className="agent-button text-white d-flex align-center gap-2 btn btn-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button className="agent-button d-flex align-center gap-2 btn btn-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span className="material-symbols-outlined text-center my-auto ai-icon">star_shine</span>
                                 Placeholder AI Agent
                                 <span className="material-symbols-outlined text-center my-auto">keyboard_arrow_down</span>
@@ -43,17 +62,24 @@ function AI() {
                             <div className='agent-icon-bg d-flex justify-content-center align-items-center mx-auto'>
                                 <span className="agent-icon material-symbols-outlined text-dark"> robot_2 </span>
                             </div>
-                            <h3 className='text-light my-3 fw-bold'>How can I help today?</h3>
+                            <h3 className='my-3 fw-bold'>How can I help today?</h3>
                             <h6 className='agent-subtext fw-light mx-auto'>Ask anything — break down projects, generate user stories, plan sprints, or get unblocked.</h6>
                         </div>
 
-                        <div className='chat-bg d-flex flex-column justify-content-center align-items-center gap-2 w-100'>
-                            <div className="chat d-flex justify-content-center align-items-center mt-2 rounded">
+                        <div  className='chat-bg d-flex flex-column justify-content-center align-items-center gap-2 w-100'>
+                            <form onSubmit={handleSubmit} className="mx-auto w-100">
+                            <div className="chat mx-auto d-flex justify-content-center align-items-center mt-2 rounded">
                                 <input type="file" id="upload" className="" hidden></input>
                                 <label htmlFor="upload" className='attach-bg d-flex justify-content-center align-items-center p-2 mx-3 rounded'><span className="material-symbols-outlined">attach_file</span></label>
-                                <textarea className="search-bar form-control mr-sm-2 px-0 my-2" placeholder="Message AI-Sprint..." rows="1"></textarea>
-                                <button className="send-bg d-flex justify-content-center align-items-center p-2 rounded m-3"><span className="send material-symbols-outlined text-dark"> send </span></button>
+                                <textarea className="search-bar form-control mr-sm-2 px-0 my-2"
+                                    rows="1"
+                                    placeholder="Message AI-Sprint..."
+                                    value={message} 
+                                    onChange={(e) => setMessage(e.target.value)}
+                                />
+                                <button type="submit" className="send-bg d-flex justify-content-center align-items-center p-2 rounded m-3"><span className="send material-symbols-outlined text-dark"> send </span></button>
                             </div>
+                            </form>
                             <p className="chat-disclaimer">AI can make mistakes. Verify important info.</p>
                         </div>
                     </main>

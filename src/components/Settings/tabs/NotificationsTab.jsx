@@ -1,8 +1,8 @@
 // src/components/Settings/tabs/NotificationsTab.jsx
 
 import { useState } from "react";
-import SettingsToast from "../../shared/SettingsToast";
-import ToggleSwitch from "../../shared/ToggleSwitch";
+import SettingsToast from "../../../shared/SettingsToast.jsx";
+import ToggleSwitch from "../../../shared/ToggleSwitch.jsx";
 
 const NOTIFICATION_OPTIONS = [
     { key: "emailAlerts", title: "Email Alerts", description: "Receive immediate email updates regarding critical items and billing" },

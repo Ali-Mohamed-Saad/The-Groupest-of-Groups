@@ -1,8 +1,8 @@
 // src/components/Settings/tabs/SecurityTab.jsx
 
 import { useState } from "react";
-import SettingsToast from "../../shared/SettingsToast";
-import ToggleSwitch from "../../shared/ToggleSwitch";
+import SettingsToast from "../../../shared/SettingsToast.jsx";
+import ToggleSwitch from "../../../shared/ToggleSwitch.jsx";
 
 const INITIAL_SESSIONS = [
     { id: 1, device: "Chrome on Windows (Current)", ip: "192.168.1.45", location: "Cairo, Egypt", isCurrent: true },

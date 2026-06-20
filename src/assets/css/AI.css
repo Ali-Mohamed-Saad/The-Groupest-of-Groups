@@ -2,14 +2,14 @@
     min-height: 0;
 }
 .new-chat{
-    background-color: #3C82F3;
+    background-color: var(--color-primary);
     border: none;
     border-radius: .5rem;
 }
 .chat-sidebar{
-    background-color: #0C111E;
+    background-color: var(--color-sidebar-bg);
     width: 21rem;
-    border-right: 2px solid #1D2435;
+    border-right: 2px solid var(--color-sidebar-border);
     overflow-y: auto;
     min-height: 0;
     
@@ -35,17 +35,16 @@
   'opsz' 32 !important
 }
 .search{
-    background-color: #080C16;
+    background-color: var(--color-body-bg);
     width: 88%;
-    border: 2px solid #121825;
+    border: 2px solid var(--color-border);
     outline: none;
 }
 .search:focus-within{
-    outline: #3C83F6 solid 2px;  
+    outline: var(--color-primary) solid 2px;  
 }
 .search-bar{
     background-color: transparent !important;
-    color: #758884 !important;
     border: none !important;
     outline: none;
     resize: none;
@@ -57,28 +56,28 @@
     box-shadow: none !important;
 }
 .search-bar::placeholder{
-    color: #758884 !important
+    color: var(--color-text-muted) !important
 }
 .recent{
-    color: #758884 !important;
+    color: var(--color-text-muted) !important;
     font-size: .8rem
 }
 .no-chats{
-    color: #758884 !important;
+    color: var(--color-text-muted) !important;
     font-size: 0.75rem;
 }
 nav{
-    background-color: #0C111E;
-    border-bottom: 2px solid #1D2435; 
+    background-color: var(--color-body-bg);
+    border-bottom: 2px solid var(--color-border); 
 }
 .ai-icon{
     color: #3C83F6 !important;
 }
 .dropdown-menu{
-    background-color: #0C111E !important;
+    background-color: var(--color-body-bg) !important;
 }
 .dropdown-item{
-    color: white !important;
+    color: var(--color-text) !important;
     border-radius: .4rem !important;
     text-align: center !important;
     padding: 0.3rem 2rem !important;
@@ -104,13 +103,13 @@ nav{
   'opsz' 24 !important;
 }
 .agent-subtext{
-    color: #758884 !important;
+    color: var(--color-text-muted) !important;
     width: 40%;
 }
 .chat-bg{
-    background-color: #0A0F1A;
+    background-color: var(--color-body-bg);
     height: 10rem;
-    border-top: 2px solid #1D2435;
+    border-top: 2px solid var(--color-border);
 }
 .main{
     flex: 1;
@@ -120,15 +119,15 @@ nav{
     overflow: hidden;     
 }
 .chat{
-    background-color: #0D1321;
+    background-color: var(--color-body-bg);
     width: 80%;
     height: 4rem;
-    border: 2px solid #121825;
+    border: 2px solid var(--color-border);
     outline: none;
     box-sizing: border-box;
 }
 .chat:focus-within{
-    outline: #3C83F6 solid 2px;  
+    outline: var(--color-primary) solid 2px;  
 }
 .message-window{
     flex: 1;
@@ -143,11 +142,11 @@ nav{
     overflow: hidden;     
 }
 .chat-disclaimer{
-    color:#758884;
+    color: var(--color-text-muted);
     font-size: .7rem;
 }
 .attach-bg{
-    background-color:#1D2435;
+    background-color: var(--color-border);
 }
 .attach-bg:hover{
     cursor:pointer;

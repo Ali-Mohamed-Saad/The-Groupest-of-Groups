@@ -177,7 +177,7 @@ function Team() {
   }, [teams]);
 
   return (
-    <div className="team-container">
+    <div className="team-container flex-grow-1">
       {/* Stats Dashboard */}
       <div className="stats-dashboard">
         <div className="stat-card">
