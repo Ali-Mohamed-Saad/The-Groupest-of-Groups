@@ -9,14 +9,14 @@
 body{
   font-family:Arial, Helvetica, sans-serif;
   color:white;
-  background-color: #080C16;
+  background-color:var(--color-body-bg);
 }
 
 .avatar-circle{
   width:28px;
   height:28px;
   border-radius:50%;
-  background:#2563eb;
+  background:var( --color-primary);
   color:white;
   display:flex;
   justify-content:center;

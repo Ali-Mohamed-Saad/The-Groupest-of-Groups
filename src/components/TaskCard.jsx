@@ -7,7 +7,7 @@ function TaskCard({ task, onClick }) {
       onClick={onClick}
       className="mb-3 text-light"
       style={{
-        background: "#091224",
+        background: "var(--color-card-bg)",
         border: "1px solid #1e293b",
         cursor: "pointer",
         borderRadius: "12px",
