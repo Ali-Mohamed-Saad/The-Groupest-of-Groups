@@ -5,9 +5,9 @@ function TaskCard({ task, onClick }) {
   return (
     <Card
       onClick={onClick}
-      className="mb-3 text-light"
+      className="mb-3 "
       style={{
-        background: "#091224",
+        background: "var(--color-body-bg)",
         border: "1px solid #1e293b",
         cursor: "pointer",
         borderRadius: "12px",
@@ -40,7 +40,7 @@ function TaskCard({ task, onClick }) {
 
         <div className="d-flex gap-2 flex-wrap">
           {task.labels.map(label => (
-            <Badge bg="secondary" key={label}>
+            <Badge bg="var(--color-text-muted)" key={label}>
               {label}
             </Badge>
           ))}
@@ -51,11 +51,12 @@ function TaskCard({ task, onClick }) {
     <i
       className="bi bi-chat"
       style={{
-        color: "#94a3b8",
+        color: "var(--color-text-muted)",
         fontSize: "18px"
       }}
     ></i>
   </div>
+  
 
   <div className="avatar-circle">
     {task.assignee?.charAt(0).toUpperCase()}
