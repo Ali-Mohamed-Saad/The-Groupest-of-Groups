@@ -180,10 +180,10 @@ function Board() {
 
   return (
     <div
-      className="p-4 text-light"
+      className="p-4 "
       style={{
         minHeight: "100vh",
-        background: "#020817"
+        background: "var(--color-card-bg);"
       }}
     >
 
