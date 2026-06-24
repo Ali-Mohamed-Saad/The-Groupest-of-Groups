@@ -99,3 +99,16 @@ img {
 a:link {
     text-decoration: none;
 }
+
+.avatar-circle{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--color-primary);
+  color:var(--color-heading);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:12px;
+  font-weight:bold;
+}

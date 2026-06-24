@@ -10,8 +10,8 @@ function AI() {
 
     const sidebarRef = useRef(true);
     const sidebarToggleButton = useRef(true);
+    
     const toggleSidebar = () => {
-        console.log("rearea")
         if(sidebarRef.current.style.display === 'none') {
             sidebarRef.current.style.display = 'inline';
             sidebarToggleButton.current.style.display = 'none';

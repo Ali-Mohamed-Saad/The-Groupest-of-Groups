@@ -183,7 +183,7 @@ function Board() {
       className="p-4 text-light"
       style={{
         minHeight: "100vh",
-        background: "#020817"
+        background: "var(--color-card-bg);"
       }}
     >
 

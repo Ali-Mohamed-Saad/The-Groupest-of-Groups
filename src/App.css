@@ -14,15 +14,3 @@ body{
   background-color: #080C16;
 }
 
-.avatar-circle{
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  background:#2563eb;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:12px;
-  font-weight:bold;
-}
