@@ -88,10 +88,7 @@ function AI() {
           <main className="main d-flex flex-column justify-content-between overflow-hidden">
             <div className="message-window flex-grow-1 text-center overflow-auto">
               <div className="agent-icon-bg d-flex justify-content-center align-items-center mx-auto">
-                <span
-                  className="agent-icon material-symbols-outlined"
-                  style={{ color: "var(--color-heading, #f8fafc)" }}
-                >
+                <span className="agent-icon material-symbols-outlined text-dark">
                   {" "}
                   robot_2{" "}
                 </span>
@@ -126,10 +123,7 @@ function AI() {
                     type="submit"
                     className="send-bg d-flex justify-content-center align-items-center p-2 rounded m-3"
                   >
-                    <span
-                      className="send material-symbols-outlined"
-                      style={{ color: "white" }}
-                    >
+                    <span className="send material-symbols-outlined text-dark">
                       {" "}
                       send{" "}
                     </span>
