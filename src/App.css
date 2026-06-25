@@ -1,0 +1,31 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.routes{
+    min-height: 0;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--color-heading);
+  background-color: var(--color-card-bg);
+}
+
+.avatar-circle{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--color-primary);
+  color:var(--color-heading);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:12px;
+  font-weight:bold;
+}
+Badge{
+  background-color:var(--color-heading) ;
+}
