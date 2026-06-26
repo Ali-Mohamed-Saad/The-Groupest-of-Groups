@@ -1,12 +1,18 @@
-// src/components/Settings/tabs/ProfileTab.jsx
-
 import { useState, useRef } from "react";
 import SettingsToast from "../../../shared/SettingsToast";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function ProfileTab() {
+    const { user } = useAuth();
+    
+    // Split full name into first and last name
+    const fullNameParts = user?.full_name ? user.full_name.trim().split(/\s+/) : [];
+    const initialFirstName = fullNameParts[0] || "Jane";
+    const initialLastName = fullNameParts.slice(1).join(" ") || "Doe";
+
     const [profile, setProfile] = useState({
-        firstName: "Jane",
-        lastName: "Doe",
+        firstName: initialFirstName,
+        lastName: initialLastName,
         bio: "",
         jobTitle: "",
         department: "",

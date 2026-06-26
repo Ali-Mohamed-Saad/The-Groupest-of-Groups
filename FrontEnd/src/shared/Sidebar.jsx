@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
 import placeholder from "../assets/placeholder.png"
 import { useTheme } from "../context/ThemeContext"
+import { useAuth } from "../context/AuthContext"
 
 import './Sidebar.css'
 
 function Sidebar() {
     const { activeTheme, toggleDarkLight } = useTheme();
+    const { user, logout } = useAuth();
 
     return(
         <>
@@ -59,18 +61,27 @@ function Sidebar() {
                     <hr />
                     <div className="ps-3">
                         <div className="buttons theme-toggle-btn" onClick={toggleDarkLight} style={{ cursor: "pointer" }}>
-                            <span className="material-symbols-outlined">
+                             <span className="material-symbols-outlined">
                                 {activeTheme.isDark ? "wb_sunny" : "dark_mode"}
                             </span>
                             <span>{activeTheme.isDark ? "Light Mode" : "Dark Mode"}</span>
                         </div>
                     </div>
                     <div className="px-3 d-flex justify-content-between align-items-center my-3">
-                        <div className="d-flex">
+                        <div className="d-flex align-items-center">
                             <img src={ placeholder} alt="" />
-                            <span className="sidebar-email mx-2">example@gmail.com</span>
+                            <span className="sidebar-email mx-2 text-truncate" style={{ maxWidth: "120px" }} title={user?.email || "example@gmail.com"}>
+                                {user?.email || "example@gmail.com"}
+                            </span>
                         </div>
-                        <span className="material-symbols-outlined mb-2">exit_to_app</span>
+                        <span 
+                            className="material-symbols-outlined mb-2" 
+                            onClick={logout} 
+                            style={{ cursor: "pointer" }}
+                            title="Sign Out"
+                        >
+                            exit_to_app
+                        </span>
                     </div>
                 </div>
 
