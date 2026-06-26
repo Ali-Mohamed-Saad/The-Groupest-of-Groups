@@ -1,7 +1,3 @@
-import Sidebar from "./shared/Sidebar";
-import Dashboard from "./components/Dashboard";
-import Board from "./components/Board";
-import AI from "./components/AI";
 import Team from "./components/Team";
 import Settings from "./components/Settings";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -10,7 +6,7 @@ import ProtectedRoute from "./shared/ProtectedRoute";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import MainLayout from "./shared/MainLayout";
-
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -42,5 +38,3 @@ function App() {
         </StrictMode>
     );
 }
-
-export default App;
