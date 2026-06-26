@@ -1,5 +1,8 @@
 import Team from "./components/Team";
 import Settings from "./components/Settings";
+import Dashboard from "./components/Dashboard";
+import Board from "./components/Board";
+import AI from "./components/AI";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./shared/ProtectedRoute";
@@ -10,6 +13,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { StrictMode } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -37,4 +41,4 @@ function App() {
             </AuthProvider>
         </StrictMode>
     );
-}
+} export default App;
