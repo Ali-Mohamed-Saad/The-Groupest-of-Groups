@@ -1,12 +1,12 @@
+// src/components/Settings/tabs/AccountTab.jsx
+
 import { useState } from "react";
 import SettingsToast from "../../../shared/SettingsToast";
-import { useAuth } from "../../../context/AuthContext";
 
 export default function AccountTab() {
-    const { user } = useAuth();
     const [account, setAccount] = useState({
-        username: user?.full_name || "janedoe",
-        email: user?.email || "jane.doe@example.com",
+        username: "janedoe",
+        email: "jane.doe@example.com",
         currentPassword: "",
         newPassword: "",
         confirmPassword: "",

@@ -18,8 +18,7 @@
     background-color: transparent;
     border: none;
     border-radius: .5rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
+    padding: 0.5rem 0.7rem;
     transition: background-color 0.2s;
 }
 .toggle-panel:hover{
@@ -130,6 +129,7 @@ nav{
     outline: var(--color-primary) solid 2px;  
 }
 .message-window{
+    
     flex: 1;
     min-height: 0;
     overflow-y: auto; 
@@ -151,7 +151,26 @@ nav{
 .attach-bg:hover{
     cursor:pointer;
 }
-.send-bg{
-    background-color: #2759aa;
-    border: none;
+.inactive-submit{
+    background-color: #244A8B;
+}
+.chat-bubble{
+    border-radius: 1rem;
+    max-width: 80%;
+    white-space: pre-wrap;
+}
+.user-bubble{
+    background-color: var(--color-primary);
+    color: var(--color-hr);
+}
+.model-bubble{
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border)
+}
+.chat-container{
+    width: 90%;
+    margin: 0 auto
+}
+.active-submit{
+    background-color: #3C83F6;
 }
