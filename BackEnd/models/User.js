@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6
     },
+    bio:        { type: String, default: '', trim: true },
+    jobTitle:   { type: String, default: '', trim: true },
+    department: { type: String, default: '', trim: true },
+    phone:      { type: String, default: '', trim: true },
+    location:   { type: String, default: '', trim: true },
+    github:     { type: String, default: '', trim: true },
+    linkedin:   { type: String, default: '', trim: true },
+    twitter:    { type: String, default: '', trim: true },
     createdAt: {
         type: Date,
         default: Date.now
