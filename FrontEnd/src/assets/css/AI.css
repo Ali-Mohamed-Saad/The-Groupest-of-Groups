@@ -174,3 +174,6 @@ nav{
 .active-submit{
     background-color: #3C83F6;
 }
+.nav-toggle-panel{
+    display: none;
+}
