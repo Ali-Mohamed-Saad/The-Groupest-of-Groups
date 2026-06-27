@@ -1,177 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import TaskCard from "./TaskCard";
 import TaskModal from "./TaskModal";
+import { useAuth } from "../context/AuthContext";
 
 function Board() {
+
+  const { token } = useAuth();
 
   const [show, setShow] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const boardData = {
-    "Backlog": [
-      {
-        id: 1,
-        title: "Set up CI/CD pipeline",
-        priority: "High",
-        status: "Backlog",
-        points: 5,
-        assignee: "Sara",
-        description:
-          "GitHub Actions for automated testing and deployment",
-        labels: ["devops"],
-        criteria: [
-          "Pipeline works",
-          "Auto deploy enabled"
-        ]
-      },
-      {
-        id: 2,
-        title: "Implement search functionality",
-        priority: "Medium",
-        status: "Backlog",
-        points: 8,
-        assignee: "Ali",
-        description:
-          "Full-text search across tasks and projects",
-        labels: ["feature"," backend"],
-        criteria: [
-          "Search returns relevant results",
-          "Supports filters"
-        ]
-      },
-      {
-        id: 3,
-        title: "Performance optimization",
-        priority: "Medium",
-        status: "Backlog",
-        points: 5,
-        assignee: "Omar",
-        description:
-          "Lazy loading and code splitting for faster loads",
-        labels: ["devops"],
-        criteria: [
-          "LCP under 2.5s",
-          "Bundle size reduced"
-        ]
-      }
-    ],
+  const [boardData, setBoardData] = useState({
+    "Backlog": [], "To Do": [], "In Progress": [], "Review": [], "Done": []
+  });
+  const [loading, setLoading] = useState(true);
 
-    "To Do": [
-      {
-        id: 1,
-        title: "Add real-time notifications",
-        priority: "Medium",
-        status: "To Do",
-        points: 8,
-        assignee: "Mariam",
-        description:
-          "WebSocket-based notification system",
-        labels: ["backend", "feature"],
-        criteria: [
-          "Users receive live updates",
-          "Notification bell shows count"
-        ]
-      },
-      {
-        id: 2,
-        title: "Write API documentation",
-        priority: "Low",
-        status: "To Do",
-        points: 3,
-        assignee: "Ahmed",
-        description:
-          "Document all REST endpoints with examples",
-        labels: ["docs"],
-        criteria: [
-          "All endpoints documented",
-          "Examples included"
-        ]
-      },
-      {
-        id: 3,
-        title: "User profile settings",
-        priority: "Low",
-        status: "To Do",
-        points: 3,
-        assignee: "Mohamed",
-        description:
-          "Profile page with avatar upload and preferences",
-        labels: [ "feature" ,"UI"],
-        criteria: [
-          "Users can update profile",
-          "Avatar upload works"
-        ]
-      }
-    ],
+  useEffect(() => {
+    const fetchBoard = async () => {
+      try {
+        // get active sprint
+        const sprintRes = await fetch('http://localhost:3000/sprints/active', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
-    "In Progress": [
-      {
-        id: 1,
-        title: "Design dashboard layout",
-        priority: "High",
-        status: "In Progress",
-        points: 5,
-        assignee: "Poda",
-        description:
-          "Create responsive dashboard with key metrics",
-        labels: ["UI", "design"],
-        criteria: [
-          "Dashboard shows project stats",
-          "Mobile responsive"
-        ]
-      },
-      {
-        id: 2,
-        title: "Implement task drag & drop",
-        priority: "Medium",
-        status: "In Progress",
-        points: 5,
-        assignee: "Rawan",
-        description:
-          "Add drag-and-drop reordering to kanban board",
-        labels: ["UI", "feature"],
-        criteria: [
-          "Tasks can be dragged between columns",
-          "Order persists"
-        ]
+        if (!sprintRes.ok) return;
+
+        const sprint = await sprintRes.json();
+
+        // get tasks grouped by column
+        const tasksRes = await fetch(`http://localhost:3000/tasks?sprintId=${sprint._id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = await tasksRes.json();
+        setBoardData(data.columns);  
+      } catch (err) {
+        console.error('Failed to load board:', err);
+      } finally {
+        setLoading(false);
       }
-    ],
-    "Review": [
-      {
-        id: 1,
-        title: "Add dark mode toggle",
-        priority: "Low",
-        status: "Review",
-        points: 2,
-        assignee: "Kaled",
-        description:
-          "Theme switching with system preference detection",
-        labels: ["UI"],
-        criteria: [
-          "Toggle works",
-          "Respects system preference"
-        ]
-      }
-    ],
-    "Done": [
-      {
-        id: 1,
-        title: "Set up authentication flow",
-        priority: "Critical",
-        status: "Done",
-        points: 8,
-        assignee: "Nor",
-        description:
-          "Implement JWT-based auth with refresh tokens",
-        labels: ["auth", "backend"],
-        criteria: [
-          "Users can sign up",
-          "Users can log in",
-          "Tokens refresh automatically"
-        ]
-      }
-    ]
-  };
+    };
+
+    fetchBoard();
+  }, [token]);
+
 
   const openTask = (task) => {
     setSelectedTask(task);
@@ -211,7 +84,7 @@ function Board() {
 
               {tasks.map(task => (
                 <TaskCard
-                  key={task.id}
+                 key={task._id}
                   task={task}
                   onClick={() => openTask(task)}
                 />
