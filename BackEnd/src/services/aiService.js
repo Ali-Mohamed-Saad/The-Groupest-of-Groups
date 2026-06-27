@@ -25,4 +25,4 @@ const fetchAgent = async (provider, message, history = []) => {
     return data.candidates[0].content.parts[0].text;
 }
 
-export default fetchAgent;
+module.exports = fetchAgent;
