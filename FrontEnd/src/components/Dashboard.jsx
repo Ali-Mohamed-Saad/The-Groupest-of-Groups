@@ -3,16 +3,62 @@ import { FiBarChart2 } from "react-icons/fi";
 import { FiClock } from "react-icons/fi";
 import { FiCheckCircle } from "react-icons/fi";
 import { FiAlertTriangle } from "react-icons/fi";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
-  const sprintData = {
-    totalTasks: 10,
-    inProgress: 2,
-    completed: 1,
-    critical: 1,
-    storyPoints: 8,
-    totalStoryPoints: 52,
-  };
+  const { token } = useAuth();
+
+  const [sprintData, setSprintData] = useState({
+    totalTasks: 0,
+    inProgress: 0,
+    completed: 0,
+    critical: 0,
+    storyPoints: 0,
+    totalStoryPoints: 0,
+  });
+  const [sprintName, setSprintName] = useState("Sprint");
+  const [sprintDescription, setSprintDescription] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        // get active sprint
+        const sprintRes = await fetch('http://localhost:3000/sprints/active', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (!sprintRes.ok) return;
+
+        const sprint = await sprintRes.json();
+        setSprintName(sprint.name);
+        setSprintDescription(sprint.description);
+
+        // get stats for that sprint
+        const statsRes = await fetch(`http://localhost:3000/sprints/${sprint._id}/stats`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = await statsRes.json();
+
+        setSprintData({
+          totalTasks: data.totalTasks,
+          inProgress: data.inProgress,
+          completed: data.completed,
+          critical: data.critical,
+          storyPoints: data.storyPoints,
+          totalStoryPoints: data.totalStoryPoints,
+        });
+      } catch (err) {
+        console.error('Failed to load dashboard:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboard();
+  }, [token]);
 
   const stats = [
     {
@@ -57,10 +103,16 @@ function Dashboard() {
     },
   ];
 
-  const progressPercentage = Math.round(
-    (sprintData.storyPoints / sprintData.totalStoryPoints) * 100
-  );
+  const progressPercentage = sprintData.totalStoryPoints > 0
+    ? Math.round((sprintData.storyPoints / sprintData.totalStoryPoints) * 100)
+    : 0;
 
+
+  if (loading) return (
+    <div className="dashboard flex-grow-1 d-flex align-items-center justify-content-center">
+      <div className="spinner-border text-secondary" role="status" />
+    </div>
+  );
   return (
     <div className="dashboard flex-grow-1">
       <h1>Sprint 1</h1>
