@@ -180,7 +180,7 @@ function Board() {
 
   return (
     <div
-      className="p-4 "
+      className="p-4 overflow-auto"
       style={{
         minHeight: "100vh",
         background: "var(--color-card-bg);"
@@ -196,7 +196,7 @@ function Board() {
 
             <div
               key={columnName}
-              style={{ width: "280px" }}
+              
             >
 
               <div className="d-flex mb-3">

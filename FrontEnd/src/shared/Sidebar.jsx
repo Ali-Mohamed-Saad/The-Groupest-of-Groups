@@ -19,7 +19,7 @@ function Sidebar() {
                             <span className="material-symbols-outlined text-dark">bolt</span>
                         </div>
                         <div>
-                            <h5 className="text-light mb-0 mt-2 title">AI-Sprint</h5>
+                            <h5 className="mb-0 mt-2 title">AI-Sprint</h5>
                             <h6 className="version">v1.0.0</h6>
                         </div>
                     </div>

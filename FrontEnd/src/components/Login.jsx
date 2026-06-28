@@ -53,7 +53,7 @@ function Login(){
                 <div className="login-bolt-bg mx-auto">
                     <span className="bolt material-symbols-outlined text-dark">bolt</span>
                 </div>
-                <h3 className='text-light my-3 fw-bold text-center'>AI Sprint</h3>
+                <h3 className='my-3 fw-bold text-center'>AI Sprint</h3>
                 <h6 className='agent-subtext mx-auto text-center w-100 mb-4'>Welcome back! Sign in to continue.</h6>
                 <form onSubmit={handleSubmit}>
                 <div className="field d-flex rounded mb-3 p-1 w-100">
@@ -89,13 +89,13 @@ function Login(){
                 </form>
                 {error && <div className="text-danger text-center mt-3 small">{error}</div>}
                 <p className="no-account text-center mt-4">Don't have an account? <Link to="/signup">Sign Up</Link></p>
-            </div>
-        <div className="light-mode-container mb-2">
+        <div className="light-mode-container mt-5">
             <button className="light-mode d-flex justify-content-center align-items-center mx-auto px-4">
             <span className="material-symbols-outlined"> sunny </span>    
             <p className="mx-2">Light Mode</p>
             </button>
         </div>
+            </div>
         
         </div>
         </>
