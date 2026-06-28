@@ -13,6 +13,12 @@ const createSprint = async (req, res) => {
             return res.status(400).json({ error: 'Start date and end date are required' });
         }
 
+        // Complete any currently active sprint before starting the new one
+        await Sprint.updateMany(
+            { createdBy: req.user._id, status: 'active' },
+            { status: 'completed' }
+        );
+
         const sprint = await Sprint.create({
             name: name.trim(),
             description: description || '',
@@ -23,6 +29,23 @@ const createSprint = async (req, res) => {
         });
 
         res.status(201).json(sprint);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const getSprintById = async (req, res) => {
+    try {
+        const sprint = await Sprint.findOne({
+            _id: req.params.id,
+            createdBy: req.user._id
+        });
+
+        if (!sprint) {
+            return res.status(404).json({ error: 'Sprint not found' });
+        }
+
+        res.json(sprint);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -125,4 +148,4 @@ const deleteSprint = async (req, res) => {
     }
 };
 
-module.exports = { createSprint, getSprints, getActiveSprint, getSprintStats, deleteSprint };
+module.exports = { createSprint, getSprints, getActiveSprint, getSprintById, getSprintStats, deleteSprint };

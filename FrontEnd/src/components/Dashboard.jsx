@@ -16,7 +16,10 @@ function Dashboard() {
     critical: 0,
     storyPoints: 0,
     totalStoryPoints: 0,
-  });
+    statusBreakdown: {
+      'Backlog': 0, 'To Do': 0, 'In Progress': 0, 'Review': 0, 'Done': 0
+    },
+});
   const [sprintName, setSprintName] = useState("Sprint");
   const [sprintDescription, setSprintDescription] = useState("");
   const [loading, setLoading] = useState(true);
@@ -49,7 +52,9 @@ function Dashboard() {
           critical: data.critical,
           storyPoints: data.storyPoints,
           totalStoryPoints: data.totalStoryPoints,
-        });
+          statusBreakdown: data.statusBreakdown,
+      });
+
       } catch (err) {
         console.error('Failed to load dashboard:', err);
       } finally {
@@ -84,24 +89,12 @@ function Dashboard() {
   ];
 
   const statusData = [
-    { count: 3, label: "Backlog" },
-    { count: 3, label: "To Do" },
-    {
-      count: sprintData.inProgress,
-      label: "In Progress",
-      className: "in-progress",
-    },
-    {
-      count: 1,
-      label: "Review",
-      className: "review",
-    },
-    {
-      count: sprintData.completed,
-      label: "Done",
-      className: "done",
-    },
-  ];
+    { count: sprintData.statusBreakdown['Backlog'], label: "Backlog" },
+    { count: sprintData.statusBreakdown['To Do'], label: "To Do" },
+    { count: sprintData.statusBreakdown['In Progress'], label: "In Progress", className: "in-progress" },
+    { count: sprintData.statusBreakdown['Review'], label: "Review", className: "review" },
+    { count: sprintData.statusBreakdown['Done'], label: "Done", className: "done" },
+];
 
   const progressPercentage = sprintData.totalStoryPoints > 0
     ? Math.round((sprintData.storyPoints / sprintData.totalStoryPoints) * 100)
@@ -115,7 +108,7 @@ function Dashboard() {
   );
   return (
     <div className="dashboard flex-grow-1">
-      <h1>Sprint 1</h1>
+      <h1>Sprints</h1>
 
       <p>
         Core platform foundation with auth, dashboard, and task management

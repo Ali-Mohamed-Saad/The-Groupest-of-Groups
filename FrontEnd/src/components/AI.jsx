@@ -81,6 +81,45 @@ function AI() {
         }
     }
 
+    function extractTaskPlan(text) {
+    const match = text.match(/```taskplan\s*([\s\S]*?)```/);
+    if (!match) return { textBefore: text, taskPlan: null };
+
+    const textBefore = text.slice(0, match.index).trim();
+    try {
+        const parsed = JSON.parse(match[1].trim());
+        return { textBefore, taskPlan: parsed.tasks || null };
+    } catch (err) {
+        console.error('Failed to parse task plan JSON:', err);
+        return { textBefore: text, taskPlan: null };
+    }
+    }
+
+      const handleAddToBoard = async (tasks, messageIndex) => {
+        try {
+            const res = await fetch('http://localhost:3000/tasks/bulk', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ tasks }),
+            });
+
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || 'Failed to add tasks');
+            }
+
+            // Mark this message's plan as "added" so the button can show confirmation
+            setMessages(prev => prev.map((m, i) =>
+                i === messageIndex ? { ...m, planAdded: true } : m
+            ));
+        } catch (err) {
+            alert(`Could not add tasks to board: ${err.message}`);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!message.trim() || loading) return;
@@ -194,7 +233,7 @@ function AI() {
                         <div className="dropdown py-2 pe-2">
                             <button className="agent-button d-flex align-center gap-2 btn btn-transparent" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span className="material-symbols-outlined text-center my-auto ai-icon">star_shine</span>
-                                Placeholder AI Agent
+                                Gemini
                                 <span className="material-symbols-outlined text-center my-auto">keyboard_arrow_down</span>
                             </button>
                             <ul className="dropdown-menu px-1 pb-1">
@@ -217,16 +256,36 @@ function AI() {
                             {messages.length === 0 ? (
                                 <></>
                             ) : (
-                                messages.map((m, i) => (
-                                    <>
-                                        <div className={`chat-container mb-3 mt-3 ${m.role === 'user' ? 'text-end' : 'text-start'}`}>
-                                            <span key={i} className={`chat-bubble ${m.role === 'user' ? 'user-bubble' : 'model-bubble'} p-2 px-3 d-inline-block`}>
-                                                <ReactMarkdown>{m.text}</ReactMarkdown>
-                                            </span>
-                                            <br></br>
-                                        </div>
-                                    </>
-                                ))
+                                messages.map((m, i) => {
+                                const { textBefore, taskPlan } = m.role === 'model' ? extractTaskPlan(m.text) : { textBefore: m.text, taskPlan: null };
+
+                                return (
+                                    <div key={i} className={`chat-container mb-3 mt-3 ${m.role === 'user' ? 'text-end' : 'text-start'}`}>
+                                        <span className={`chat-bubble ${m.role === 'user' ? 'user-bubble' : 'model-bubble'} p-2 px-3 d-inline-block`}>
+                                            <ReactMarkdown>{textBefore}</ReactMarkdown>
+                                        </span>
+
+                                        {taskPlan && (
+                                            <div className="task-plan-card p-3 rounded mt-2 mx-auto" style={{ maxWidth: '400px', textAlign: 'left' }}>
+                                                <strong>Proposed tasks ({taskPlan.length})</strong>
+                                                <ul className="mt-2 mb-2">
+                                                    {taskPlan.map((t, ti) => (
+                                                        <li key={ti}>{t.title} <span className="text-muted">({t.priority}, {t.points} pts)</span></li>
+                                                    ))}
+                                                </ul>
+                                                {m.planAdded ? (
+                                                    <button className="btn btn-success btn-sm" disabled>✓ Added to Board</button>
+                                                ) : (
+                                                    <button className="btn btn-primary btn-sm" onClick={() => handleAddToBoard(taskPlan, i)}>
+                                                        + Add to Board
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )}
+                                        <br />
+                                    </div>
+                                );
+                            })
                             )}
                             {loading && <div className='chat-container'><div className="chat-bubble mb-3 model-bubble p-2 px-3 d-inline-block">Thinking...</div></div>}
                         </div>

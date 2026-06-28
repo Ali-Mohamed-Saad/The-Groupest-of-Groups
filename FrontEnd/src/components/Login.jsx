@@ -59,7 +59,7 @@ function Login(){
                 <div className="field d-flex rounded mb-3 p-1 w-100">
                         <span className="material-symbols-outlined p-2">mail</span>       
                         <input 
-                            className="search-bar form-control mr-sm-2 p-0" 
+                            className="search-bar text-light form-control mr-sm-2 p-0" 
                             type="email" 
                             placeholder="Email Address" 
                             aria-label="Email Address"
@@ -72,7 +72,7 @@ function Login(){
                 <div className="field d-flex rounded mb-3 p-1 w-100">
                         <span className="material-symbols-outlined p-2">lock</span>       
                         <input 
-                            className="search-bar form-control mr-sm-2 p-0" 
+                            className="search-bar form-control text-light mr-sm-2 p-0" 
                             type="password" 
                             placeholder="Password" 
                             aria-label="Password"
@@ -90,13 +90,6 @@ function Login(){
                 {error && <div className="text-danger text-center mt-3 small">{error}</div>}
                 <p className="no-account text-center mt-4">Don't have an account? <Link to="/signup">Sign Up</Link></p>
             </div>
-        <div className="light-mode-container mb-2">
-            <button className="light-mode d-flex justify-content-center align-items-center mx-auto px-4">
-            <span className="material-symbols-outlined"> sunny </span>    
-            <p className="mx-2">Light Mode</p>
-            </button>
-        </div>
-        
         </div>
         </>
     )
