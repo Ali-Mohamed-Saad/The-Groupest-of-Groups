@@ -6,12 +6,14 @@ const {
     getTasks,
     updateTask,
     updateTaskStatus,
-    deleteTask
+    deleteTask,
+    createBulkTasks
 } = require('../src/controllers/taskController');
 
 router.use(authMiddleware);
 
 router.post('/', createTask);
+router.post('/bulk', createBulkTasks);
 router.get('/', getTasks);
 router.put('/:id', updateTask);
 router.patch('/:id/status', updateTaskStatus);

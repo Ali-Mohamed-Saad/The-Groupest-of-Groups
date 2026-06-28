@@ -1,4 +1,5 @@
 const Task = require('../../models/Task');
+const Sprint = require('../../models/Sprint');
 
 // POST /tasks
 const createTask = async (req, res) => {
@@ -30,6 +31,50 @@ const createTask = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+const createBulkTasks = async (req, res) => {
+    try {
+        const { tasks, sprintId } = req.body;
+
+        if (!Array.isArray(tasks) || tasks.length === 0) {
+            return res.status(400).json({ error: 'tasks must be a non-empty array' });
+        }
+
+        let targetSprintId = sprintId;
+
+        if (!targetSprintId) {
+            const activeSprint = await Sprint.findOne({
+                createdBy: req.user._id,
+                status: 'active'
+            }).sort({ createdAt: -1 });
+
+            if (!activeSprint) {
+                return res.status(400).json({ error: 'No active sprint found. Create a sprint first.' });
+            }
+            targetSprintId = activeSprint._id;
+        }
+
+        const tasksToInsert = tasks.map(t => ({
+            title: t.title,
+            description: t.description || '',
+            priority: t.priority || 'Medium',
+            points: t.points || 1,
+            assignee: t.assignee || '',
+            labels: t.labels || [],
+            criteria: t.criteria || [],
+            status: 'Backlog',
+            sprint: targetSprintId,
+            createdBy: req.user._id,
+        }));
+
+        const createdTasks = await Task.insertMany(tasksToInsert);
+        res.status(201).json(createdTasks);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
 
 // GET /tasks?sprintId=...
 const getTasks = async (req, res) => {
@@ -124,4 +169,4 @@ const deleteTask = async (req, res) => {
     }
 };
 
-module.exports = { createTask, getTasks, updateTask, updateTaskStatus, deleteTask };
+module.exports = { createTask, getTasks, updateTask, updateTaskStatus, deleteTask, createBulkTasks };

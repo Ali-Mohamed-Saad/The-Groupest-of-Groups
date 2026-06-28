@@ -108,12 +108,6 @@ function SignUp(){
                 {error && <div className="text-danger text-center mt-3 small">{error}</div>}
                 <p className="no-account text-center mt-4">Already have an account? <Link to="/login">Sign In</Link></p>
             </div>
-            <div className="light-mode-container mb-2">
-                <button className="light-mode d-flex justify-content-center align-items-center mx-auto px-4">
-                <span className="material-symbols-outlined"> sunny </span>    
-                <p className="mx-2">Light Mode</p>
-                </button>
-            </div>
         </div>
         </>
     )
