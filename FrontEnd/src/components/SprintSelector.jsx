@@ -11,6 +11,7 @@ function SprintSelector({ currentSprintId, onSprintChange }) {
   const [endDate, setEndDate] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const loadSprints = async () => {
@@ -20,8 +21,11 @@ function SprintSelector({ currentSprintId, onSprintChange }) {
         });
         const data = await res.json();
         setSprints(data);
+        if (data.length === 0) setShowCreateForm(true); // auto-open the form when there's nothing to select
       } catch (err) {
         console.error('Failed to load sprints:', err);
+      } finally {
+        setLoaded(true);
       }
     };
     if (token) loadSprints();
@@ -76,20 +80,28 @@ function SprintSelector({ currentSprintId, onSprintChange }) {
     }
   };
 
+  if (!loaded) return null;
+
   return (
     <div className="sprint-selector mb-3">
-      <select
-        className="form-select bg-dark text-light border-secondary"
-        value={currentSprintId || ""}
-        onChange={handleSelectChange}
-      >
-        {sprints.map(sprint => (
-          <option key={sprint._id} value={sprint._id}>
-            {sprint.name} {sprint.status === 'active' ? '(active)' : ''}
-          </option>
-        ))}
-        <option value="__new__">+ New Sprint</option>
-      </select>
+      {sprints.length > 0 && (
+        <select
+          className="form-select bg-dark text-light border-secondary"
+          value={currentSprintId || ""}
+          onChange={handleSelectChange}
+        >
+          {sprints.map(sprint => (
+            <option key={sprint._id} value={sprint._id}>
+              {sprint.name} {sprint.status === 'active' ? '(active)' : ''}
+            </option>
+          ))}
+          <option value="__new__">+ New Sprint</option>
+        </select>
+      )}
+
+      {sprints.length === 0 && !showCreateForm && (
+        <div className="text-secondary mb-2">No sprints yet.</div>
+      )}
 
       {showCreateForm && (
         <form onSubmit={handleCreateSprint} className="mt-3 p-3 rounded" style={{ background: "#091224", border: "1px solid #1e293b" }}>
@@ -128,9 +140,11 @@ function SprintSelector({ currentSprintId, onSprintChange }) {
             <button type="submit" className="btn btn-primary btn-sm" disabled={creating}>
               {creating ? "Creating..." : "Create Sprint"}
             </button>
-            <button type="button" className="btn btn-outline-secondary btn-sm" onClick={() => setShowCreateForm(false)} disabled={creating}>
-              Cancel
-            </button>
+            {sprints.length > 0 && (
+              <button type="button" className="btn btn-outline-secondary btn-sm" onClick={() => setShowCreateForm(false)} disabled={creating}>
+                Cancel
+              </button>
+            )}
           </div>
         </form>
       )}
